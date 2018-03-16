@@ -17,10 +17,9 @@ void cameraOn(){
 }
 
 void main(){
+  setup();
   loop(){
-    setup();
     if(pulseIn(4, HIGH, 5000000) >= 45000000)
      cameraOn();
-    
   }
 }
