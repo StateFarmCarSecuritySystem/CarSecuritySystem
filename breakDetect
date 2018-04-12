@@ -19,7 +19,7 @@ void cameraOn(){
 void main(){
   setup();
   loop(){
-    if(pulseIn(4, HIGH, 5000000) >= 45000000)
+    if(analogRead(3)==0 )
      cameraOn();
   }
 }
