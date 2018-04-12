@@ -5,21 +5,12 @@ the code should activate pin 8 to output a voltage.*/
 #include <iostream>
 using namespace break;
 
-//We will use pin 4 or change this
-int pin = 4;
-
 void setup(){
-  pinmode(4, INPUT);
+  pinmode(3, INPUT);
 }
 
-void cameraOn(){
-  pinmode(8, OUTPUT);
-}
-
-void main(){
-  setup();
-  loop(){
-    if(analogRead(3)==0 )
-     cameraOn();
-  }
+void loop() {
+  // put your main code here, to run repeatedly:
+  if(analogRead(3)==0 )
+     pinmode(8, OUTPUT);
 }
