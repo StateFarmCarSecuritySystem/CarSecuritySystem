@@ -1,25 +1,29 @@
-/*This code initializes that we want our code to be called break, and has our input from the conductive gel/window to be on pin 4.
-when the pulse in for four from a higher energy source than usual (after a 5 second delay) goes past 45 seconds (50 seconds in total),
-the code should activate pin 8 to output a voltage.*/
-
-#include <iostream>
-using namespace break;
-
-//We will use pin 4 or change this
-int pin = 4;
-
+//initializes pin numbers
+int pinInput= A0;
+int pinOutput1 = 8;
+int pinOutput2 = 7;
 void setup(){
-  pinmode(4, INPUT);
+  pinMode(pinInput,INPUT);              
+  pinMode(pinOutput1, OUTPUT);          
+  pinMode(pinOutput2, OUTPUT);
+  pinMode(LED_BUILTIN, OUTPUT);
 }
 
-void cameraOn(){
-  pinmode(8, OUTPUT);
-}
-
-void main(){
-  setup();
-  loop(){
-    if(analogRead(3)==0 )
-     cameraOn();
+void loop() {
+  // detects a break in the circuit which means that the window is broken
+  if(analogRead(pinInput)==0 ){
+     digitalWrite(pinOutput1, HIGH);
+     digitalWrite(pinOutput2, HIGH);
   }
+  //relays a message to the connected cellular device that the batteries across the ink are below 20% and blinks Pin 13 
+  else if(analogRead(pinInput)<184){
+    // code to send message to device
+    while(1){
+    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+    delay(1000);                       // wait for a second
+    digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+    delay(1000);                       // wait for a second     
+    }
+  }
+  delay(100);
 }
